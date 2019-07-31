@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>My Tasks</h1>
+    <% @tasks.each do |task| %>
+      <div class="card d-inline-block" style="width: 18rem;">
+          <div class="card-body">
+            <h2><%= link_to task.title, task_path(task.id) %></h2>
+            <%= link_to "Delete", task_path(task), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger' %>
+            <% if task.completed? %>
+               <div class="custom-control custom-checkbox  d-inline-block">
+                 <input type="checkbox" class="custom-control-input" id="defaultChecked2" checked>
+                 <label class="custom-control-label" for="defaultChecked2">Task is completed</label>
+               </div>
+             <% else %>
+               <div class="custom-control custom-checkbox  d-inline-block">
+                 <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
+                 <label class="custom-control-label" for="defaultUnchecked">To do</label>
+               </div>
+             <%end %>
+          </div>
+        </div>
+    <% end %>
+   <p><%= link_to 'Add new Task', new_task_path, class: 'btn btn-info mt-3' %></p>
+</div>
